@@ -1,0 +1,32 @@
+
+h2 {
+	margin: 16px;
+}
+
+.margin-default {
+	margin: 16px;
+}
+
+.list-add {
+	list-style: none;
+	color: #6e7177;
+	display: block;
+	margin-left: 16px;
+}
+
+.ma-left {
+	margin-left: 8px;
+}
+
+.icon-color-red {
+	color: #dc3545;
+}
+
+.icon-color-green {
+	color: #28a745;
+}
+
+.btn-cadastrar {
+	float: right;
+	margin: 16px;
+}

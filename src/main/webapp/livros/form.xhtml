@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Formulário Livros</title>
+</h:head>
+
+<h:body>
+	
+	<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		
+		<h:messages styleClass="alert alert-danger margin-default" role="alert" >
+		
+		</h:messages>
+		
+		<h2>Cadastro de Livros</h2>
+		<hr />
+			<h:form prependId="false" enctype="multipart/form-data">
+				<div class="form-group col-md-12">
+					<h:outputLabel value="Autores" />
+					 <h:selectManyListbox id="authorsID" styleClass="form-control col-md-4"  
+						value="#{adminBooksBean.product.authors}"
+						converter="br.com.casadocodigo.loja.converter.EntityConverter">
+						
+						
+						<f:selectItems value="#{adminBooksBean.authors}" var="author"
+							itemLabel="#{author.name}" itemValue="#{author}" />
+					</h:selectManyListbox> 
+					<!-- <div class="form-row">
+						<div class="col1">
+							<h:selectOneMenu styleClass="form-control" 
+								value="#{adminBooksBean.selectedAuthorsIds}">
+								<f:selectItems value="#{adminBooksBean.authors}" var="author"
+									itemLabel="#{author.name}" itemValue="#{author.id}"/>
+							</h:selectOneMenu>
+						</div>
+						<div class="col1 ma-left">
+							<h:commandLink value="" action="#{adminBooksBean}" title="Incluir" >
+								<i class="fas fa-plus-circle fa-2x icon-color-green"></i>
+							</h:commandLink>
+						</div>
+						<div>
+							<ui:repeat var="author" value="#{adminBooksBean.selectedAuthors}">
+								<ul class="list-group list-add">
+									<li>
+										#{author.name}
+										<h:commandLink value="">
+											<i class="fas fa-minus-circle icon-color-red"></i>
+										</h:commandLink>
+									</li>
+								</ul>
+							</ui:repeat>
+						</div>
+					</div> -->
+				</div>
+		
+				<div class="form-group col-md-4">
+					<h:outputLabel for="title">Título</h:outputLabel>
+					<h:inputText id="title"
+						styleClass="form-control" value="#{adminBooksBean.product.title}">
+						<h:message for="title"/>
+					</h:inputText>
+				</div>
+		
+				<div class="form-group col-md-4">
+					<h:outputLabel>Descrição</h:outputLabel>
+					<h:inputTextarea id="description" styleClass="form-control" cols="20" rows="5"
+						value="#{adminBooksBean.product.description}">
+						<h:message for="description"/>	
+					</h:inputTextarea>
+				</div>
+				
+				<div class="form-gourp col-md-4" >
+					<h:outputLabel value="Data de publicação" />
+					<h:inputText styleClass="form-control" value="#{adminBooksBean.product.releaseDate}"
+						pt:type="date" 
+						converter="br.com.casadocodigo.loja.converter.CalendarConverter">
+						
+					</h:inputText>
+				</div>
+				
+				<div class="form-group col-md-6">
+					<h:outputLabel value="Capa do Livro" />
+					
+					<h:inputFile id="summary" label="Sumário do livro" 
+						styleClass="form-control" value="#{adminBooksBean.summary}">
+					</h:inputFile>
+				</div>
+				
+				<div class="form-group form-row">
+					<div class="form-group col-sm-2">
+						<h:outputLabel>Número de páginas</h:outputLabel>
+						<h:inputText id="numberOfPages" styleClass="form-control" 
+							value="#{adminBooksBean.product.numberOfpages}">
+							<h:message for="numberOfPages"/>
+							<f:validateLongRange minimum="80"/>	
+						</h:inputText>
+					</div>
+			
+					<div class="form-group col-sm-2">
+						<h:outputLabel>Preço</h:outputLabel>
+						<h:inputText id="price" styleClass="form-control" 
+							value="#{adminBooksBean.product.price}">
+							<h:message for="price"/>
+							<f:validateDoubleRange minimum="10" maximum="100"/>
+						</h:inputText>
+					</div>
+				</div>
+				
+				<h:commandLink action="lista?faces-redirect=true" value="Voltar" 
+					styleClass="btn btn-outline-primary" immediate="true" />
+				<h:commandButton styleClass="btn btn-primary ma-left" 
+					value="Salvar" action="#{adminBooksBean.save}" />
+				
+			</h:form>
+		</ui:define>
+		</ui:composition>
+
+</h:body>
+
+
+</html>
