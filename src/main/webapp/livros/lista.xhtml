@@ -17,11 +17,10 @@
 			
 			<h2>Livros cadastrado</h2>
 			<br/>
-			<br/>
 			<h:form>
 				<div class="btn-cadastrar" >
 					<h:commandButton action="#{adminListBookBean.form}" 
-						value="Cadastrar Livros" styleClass="btn btn-outline-secondary"/>
+						value="Cadastrar Livros" styleClass="btn btn-dark"/>
 				</div>
 			</h:form>
 			<h:dataTable value="#{adminListBookBean.books}"
@@ -74,59 +73,36 @@
 				
 			</h:dataTable>		
 			
+			<div class="container">
+				<div class="card-deck text-center">
+				<ui:repeat var="book" value="#{adminListBookBean.books}">
+					<div class="card mb-3" style="max-width: 18rem;">
+						<h:graphicImage 
+						  width="280"
+						  height="384" 
+						  alt="Capa do Livro" 
+						  title="Capa do Livro" styleClass="card-igm-top" 
+						  value="#{book.summaryPath}" />
+						  
+					  	<div class="card-body text-dark">
+						  <h5 class="card-title">
+						  	<h:outputText value="#{book.title}"/>
+						  </h5>
+						  <p class="card-text">
+						  	<h:outputText value="#{book.description}"/>
+						  </p>
+						  <p>
+						  	#{adminListBookBean.convertPrice(book.price)}
+						  </p>
+				 	  	</div>
+			 	  	</div>
+				</ui:repeat>
+				</div>
+			</div>
 		</ui:define>
 	</ui:composition>
 	
-	<!-- <div class="container">
-		
-		<h:messages styleClass="alert alert-success" role="alert"/>
-			
-		<h2>Livros cadastrado</h2>
-		<br/>
-		<br/>
-		<h:dataTable value="#{adminListBookBean.books}"
-			var="book" styleClass="table table-sm  table-hover">
-		
-			<h:column>
-				<f:facet name="header">
-					Título
-				</f:facet>
-				#{book.title}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					Descrição
-				</f:facet>
-				#{book.description}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					Número de páginas
-				</f:facet>
-				#{book.numberOfpages}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					Preço
-				</f:facet>
-				#{book.price}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					Autores
-				</f:facet>
-				<ui:repeat var="author" 
-					value="#{book.authors}">
-					#{author.name} | 
-				</ui:repeat>
-			</h:column>
-			
-		</h:dataTable>
-	</div> -->
+	
 </h:body>
 	
 </html>
