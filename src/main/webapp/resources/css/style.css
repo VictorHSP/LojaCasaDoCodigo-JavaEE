@@ -1,6 +1,7 @@
 
 h2 {
 	margin: 16px;
+	color: #f8965d;
 }
 
 .margin-default {
@@ -29,4 +30,12 @@ h2 {
 .btn-cadastrar {
 	float: right;
 	margin: 16px;
+}
+
+.bg-primary-header {
+	background-color: #ffaa60;
+}
+
+.bg-dark-footer {
+	background-color: #333;
 }
