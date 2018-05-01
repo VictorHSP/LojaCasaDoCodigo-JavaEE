@@ -1,7 +1,7 @@
 
 h2 {
 	margin: 16px;
-	color: #f8965d;
+	color: #484848;
 }
 
 .margin-default {
@@ -13,6 +13,7 @@ h2 {
 	color: #6e7177;
 	display: block;
 	margin-left: 16px;
+	
 }
 
 .ma-left {
