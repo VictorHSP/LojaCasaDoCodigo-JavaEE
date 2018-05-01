@@ -5,7 +5,7 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>livros/form.jsf</welcome-file>
+        <welcome-file>site/index.jsf</welcome-file>
     </welcome-file-list>
 
     <display-name>casadocodigo</display-name>

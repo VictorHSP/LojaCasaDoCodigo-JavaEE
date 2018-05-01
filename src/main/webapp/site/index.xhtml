@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	
+<h:head>
+	<title>Livros Casa do Código</title>
+</h:head>
+
+<h:body>
+	
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+		<div class="container">
+				<div class="card-deck text-center">
+				<div class="row">
+				<ui:repeat var="book" value="#{adminListBookBean.books}">
+					<div class="col-sm-4">
+					<div class="card md-3 margin-default" style="max-width: 18rem;">
+						<h:graphicImage 
+						  width="280"
+						  height="384" 
+						  alt="Capa do Livro" 
+						  title="Capa do Livro" styleClass="card-igm-top" 
+						  value="#{book.summaryPath}" />
+						  
+					  	<div class="card-body text-dark">
+						  <h5 class="card-title">
+						  	<h:outputText value="#{book.title}"/>
+						  </h5>
+						  <p class="card-text">
+						  	<h:outputText value="#{book.description}"/>
+						  </p>
+						  <p>
+						  	#{adminListBookBean.convertPrice(book.price)}
+						  </p>
+				 	  	</div>
+			 	  	</div>
+			 	  	</div>
+				</ui:repeat>
+				</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+      
+ </html>
