@@ -6,43 +6,90 @@
 
 	
 <h:head>
-	<title>Livros Casa do Código</title>
+	<ui:define name="title">
+		<title>Livros Casa do Código</title>
+	</ui:define>
 </h:head>
 
 <h:body>
 	
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-		<div class="container">
-				<div class="card-deck text-center">
-				<div class="row">
-				<ui:repeat var="book" value="#{adminListBookBean.books}">
-					<div class="col-sm-4">
-					<div class="card md-3 margin-default" style="max-width: 18rem;">
-						<h:graphicImage 
-						  width="280"
-						  height="384" 
-						  alt="Capa do Livro" 
-						  title="Capa do Livro" styleClass="card-igm-top" 
-						  value="#{book.summaryPath}" />
-						  
-					  	<div class="card-body text-dark">
-						  <h5 class="card-title">
-						  	<h:outputText value="#{book.title}"/>
-						  </h5>
-						  <p class="card-text">
-						  	<h:outputText value="#{book.description}"/>
-						  </p>
-						  <p>
-						  	#{adminListBookBean.convertPrice(book.price)}
-						  </p>
+		
+		<h:panelGroup rendered="#{!homeBean.lastReleases.isEmpty()}" >
+		<h2>Lançamentos</h2>
+			<div class="row">
+				<div class="col-md-10">
+					<div class="card-deck text-center">
+					
+					<ui:repeat var="book" value="#{homeBean.lastReleases}">
+						<a class="link-book" href="#{homeBean.request.contextPath}/site/detalhe.jsf?id=#{book.id}">
+							<div class="card  margin-default" style="max-width: 18rem;">
+								<h:graphicImage 
+								  width="280"
+								  height="384" 
+								  alt="Capa do Livro" 
+								  title="Capa do Livro" styleClass="card-igm-top" 
+								  value="#{book.summaryPath}" />
+								  
+							  	<div class="card-body text-dark ">
+								  	
+									  <h5 class="card-title">
+									  	<h:outputText value="#{book.title}"/>
+									  </h5>
+									  <p class="card-text">
+									  	<h:outputText value="#{book.description}"/>
+									  </p>
+									  <p>
+									  	#{adminListBookBean.convertPrice(book.price)}
+									  </p>
+									  <div class="container-buy">
+									  	<button class="btn btn-buy">Comprar</button>
+									  </div>
+						 	  		
+					 	  		</div>
+					 	  	</div>
+				 	  	</a>
+					</ui:repeat>
+					</div>
+					</div>
+				</div>
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{!homeBean.olderBooks.isEmpty()}" >
+			<h2>Livros em promoções</h2>
+		
+			<div class="container">
+					<div class="card-deck text-center">
+					<div class="row">
+					<ui:repeat var="book" value="#{homeBean.olderBooks}">
+						<div class="col-sm-4">
+						<div class="card md-3 margin-default" style="max-width: 18rem;">
+							<h:graphicImage 
+							  width="280"
+							  height="384" 
+							  alt="Capa do Livro" 
+							  title="Capa do Livro" styleClass="card-igm-top" 
+							  value="#{book.summaryPath}" />
+							  
+						  	<div class="card-body text-dark">
+							  <h4 class="card-title">
+							  	<h:outputText value="#{book.title}"/>
+							  </h4>
+							  <p class="card-text">
+							  	<h:outputText value="#{book.description}"/>
+							  </p>
+							  <p>
+							  	#{adminListBookBean.convertPrice(book.price)}
+							  </p>
+					 	  	</div>
 				 	  	</div>
-			 	  	</div>
-			 	  	</div>
-				</ui:repeat>
+				 	  	</div>
+					</ui:repeat>
+					</div>
+					</div>
 				</div>
-				</div>
-			</div>
+		</h:panelGroup>
 		</ui:define>
 	</ui:composition>
 

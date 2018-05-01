@@ -24,10 +24,15 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Book.List", query = "select distinct(b) from Book b join fetch b.authors")
+	@NamedQuery(name = "Book.List", query = "select distinct(b) from Book b join fetch b.authors"),
+	@NamedQuery(name = "Book.LastReleases", 
+		query = Book.SELECT_LASTDATE)
 })
 public class Book {
-
+		
+	public static final String SELECT_LASTDATE 
+		= "select b from Book b where b.releaseDate <= now() order by b.id desc";
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
